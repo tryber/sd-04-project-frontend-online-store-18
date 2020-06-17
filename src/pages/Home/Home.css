@@ -1,0 +1,27 @@
+.container {
+  border: 1px solid black;
+  display: flex;
+  flex-grow: 1;
+  height: 100vh;
+  margin: 1%;
+  padding: 1%;
+}
+
+.categorys {
+  border: 1px solid black;
+  flex-grow: 1;
+  margin: 1%;
+  padding: 1%;
+}
+
+.content {
+  border: 1px solid black;
+  flex-grow: 4;
+  margin: 1%;
+  padding: 1%;
+}
+
+.search-input {
+  border-radius: 8px;
+  width: 80%;
+}
