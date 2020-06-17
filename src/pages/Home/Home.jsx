@@ -2,22 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Categories from '../../components/Categories';
 import './Home.css';
+import * as api from '../../services/api';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { inputValue: '', loading: false, notFound: false };
+    this.state = { categories: [], inputValue: '', loading: false, notFound: false };
+  }
+
+  componentDidMount() {
+    api.getCategories().then((categories) => this.setState({ categories }));
   }
 
   render() {
-    const { inputValue, loading, notFound } = this.state;
+    const { inputValue, loading, notFound, categories } = this.state;
     if (loading) return <div className="loading">loading...</div>;
     if (notFound) return <div className="not-found">Not found!</div>;
     return (
       <div className="container">
         <aside className="categories">
-          <Categories />
+          <Categories categories={categories} />
         </aside>
         <div className="content">
           <p data-testid="home-initial-message">
