@@ -1,5 +1,6 @@
 import React from 'react';
-import Categorys from '../../components/Categorys';
+import { Link } from 'react-router-dom';
+import Categories from '../../components/Categories';
 import './Home.css';
 
 class Home extends React.Component {
@@ -15,8 +16,8 @@ class Home extends React.Component {
     if (notFound) return <div className="not-found">Not found!</div>;
     return (
       <div className="container">
-        <aside className="categorys">
-          <Categorys />
+        <aside className="categories">
+          <Categories />
         </aside>
         <div className="content">
           <p data-testid="home-initial-message">
@@ -29,7 +30,9 @@ class Home extends React.Component {
             value={inputValue}
             onChange={(event) => this.setState({ inputValue: event.target.value })}
           />
-          <i className="fas fa-shopping-cart fa-2x" />
+          <Link to="/cart" data-testid="shopping-cart-button">
+            <i className="fas fa-shopping-cart fa-2x" />
+          </Link>
           <div className="items-list">ITENS LISTADOS</div>
         </div>
       </div>

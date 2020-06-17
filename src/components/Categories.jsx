@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Categorys = () => (
+const Categories = () => (
   <div>
     <p>Categorias:</p>
     <label htmlFor="category-1">
@@ -25,4 +25,4 @@ const Categorys = () => (
   </div>
 );
 
-export default Categorys;
+export default Categories;

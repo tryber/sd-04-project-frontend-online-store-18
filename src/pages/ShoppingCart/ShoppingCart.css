@@ -1,0 +1,25 @@
+.back-button {
+  color: black;
+  margin: 2%;
+  text-decoration: none;
+}
+
+.shopping-cart-container {
+  border: 1px solid black;
+  flex-grow: 1;
+  height: 100vh;
+  margin: 1%;
+  padding: 1%;
+}
+
+.back-button-text {
+  margin-left: 0.5%;
+}
+
+.back-button-text:hover {
+  font-weight: 900;
+}
+
+.row {
+  display: flex;
+}
