@@ -7,7 +7,7 @@
   padding: 1%;
 }
 
-aside.categorys {
+.categorys {
   border: 1px solid black;
   flex-grow: 1;
   margin: 1%;
@@ -21,7 +21,7 @@ aside.categorys {
   padding: 1%;
 }
 
-input.search-input {
+.search-input {
   border-radius: 8px;
   width: 80%;
 }

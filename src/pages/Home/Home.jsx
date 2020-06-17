@@ -10,7 +10,7 @@ class Home extends React.Component {
 
   render() {
     const { inputValue, loading, notFound } = this.state;
-    // if (loading) return <div className="loading">loading...</div>;
+    if (loading) return <div className="loading">loading...</div>;
 
     if (notFound) return <div className="not-found">Not found!</div>;
 
