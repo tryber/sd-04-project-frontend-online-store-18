@@ -1,7 +1,7 @@
 .back-button {
+  color: black;
   margin: 2%;
   text-decoration: none;
-  color: black
 }
 
 .shopping-cart-container {
@@ -12,12 +12,12 @@
   padding: 1%;
 }
 
-.back-button-text:hover {
-  font-weight: 900;
-}
-
 .back-button-text {
   margin-left: 0.5%;
+}
+
+.back-button-text:hover {
+  font-weight: 900;
 }
 
 .row {
