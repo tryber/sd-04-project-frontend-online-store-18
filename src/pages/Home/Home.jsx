@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Categorys from '../../components/Categorys';
 import './Home.css';
 
@@ -29,7 +30,9 @@ class Home extends React.Component {
             value={inputValue}
             onChange={(event) => this.setState({ inputValue: event.target.value })}
           />
-          <i className="fas fa-shopping-cart fa-2x" />
+          <Link to="/cart" data-testid="shopping-cart-button">
+            <i className="fas fa-shopping-cart fa-2x" />
+          </Link>
           <div className="items-list">ITENS LISTADOS</div>
         </div>
       </div>
