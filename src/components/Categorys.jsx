@@ -2,7 +2,7 @@ import React from 'react';
 
 const Categorys = (props) => {
   return (
-    <React.Fragment>
+    <>
       <p>Categorias:</p>
       <label htmlFor="category-1">
         <input type="radio" name="category" id="category-1" value="category-1" />
@@ -23,7 +23,7 @@ const Categorys = (props) => {
         <input type="radio" name="category" id="category-4" value="category-4" />
         Categoria 4
       </label>
-    </React.Fragment>
+    </>
   );
 };
 
