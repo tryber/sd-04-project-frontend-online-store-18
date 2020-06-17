@@ -8,11 +8,14 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { categories: [], inputValue: '', loading: false, notFound: false };
+    this.state = { categories: [], inputValue: '', loading: true, notFound: false };
   }
 
   componentDidMount() {
-    api.getCategories().then((categories) => this.setState({ categories }));
+    api
+      .getCategories()
+      .then((categories) => this.setState({ categories, loading: false }))
+      .catch((err) => console.error(err.message));
   }
 
   render() {
