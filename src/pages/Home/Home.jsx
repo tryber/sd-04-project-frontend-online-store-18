@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Categorys from '../../components/Categorys';
+import Categories from '../../components/Categories';
 import './Home.css';
 
 class Home extends React.Component {
@@ -16,8 +16,8 @@ class Home extends React.Component {
     if (notFound) return <div className="not-found">Not found!</div>;
     return (
       <div className="container">
-        <aside className="categorys">
-          <Categorys />
+        <aside className="categories">
+          <Categories />
         </aside>
         <div className="content">
           <p data-testid="home-initial-message">
