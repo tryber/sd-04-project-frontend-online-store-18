@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Categorys = () => (
-  <>
+  <div>
     <p>Categorias:</p>
     <label htmlFor="category-1">
       <input type="radio" name="category" id="category-1" value="category-1" />
@@ -22,7 +22,7 @@ const Categorys = () => (
       <input type="radio" name="category" id="category-4" value="category-4" />
       Categoria 4
     </label>
-  </>
+  </div>
 );
 
 export default Categorys;
