@@ -10,10 +10,7 @@ const Item = (props) => {
       {items.map((item) => (
         <div data-testid="product" key={item.id} className="item">
           <p>{item.title}</p>
-          <Link
-            data-testid="product-detail-link"
-            to={{ pathname: `/${item.id}`, state: { item } }}
-          >
+          <Link data-testid="product-detail-link" to={{ pathname: `/${item.id}`, state: { item } }}>
             <img src={item.thumbnail} alt="item" />
           </Link>
           <p>{`R$ ${item.price.toFixed(2)}`}</p>
