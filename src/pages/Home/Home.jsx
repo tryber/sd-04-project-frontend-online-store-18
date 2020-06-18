@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Categories from '../../components/Categories';
+import Item from '../../components/Item/Item';
+import SearchInput from '../../components/SearchInput/SearchInput';
+
 import './Home.css';
 import * as api from '../../services/api';
 
@@ -8,37 +11,71 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { categories: [], inputValue: '', loading: false, notFound: false };
+    this.state = {
+      categoryId: '',
+      categories: [],
+      inputValue: '',
+      notFound: false,
+      items: [],
+    };
+
+    this.apiButton = this.apiButton.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleCategory = this.handleCategory.bind(this);
   }
 
   componentDidMount() {
-    api.getCategories().then((categories) => this.setState({ categories }));
+    api
+      .getCategories()
+      .then((categories) => this.setState({ categories }))
+      .catch((err) => console.error(err.message));
+  }
+
+  async apiButton() {
+    const { categoryId, inputValue } = this.state;
+    return api
+      .getProductsFromCategoryAndQuery(categoryId, inputValue)
+      .then((data) => data.results)
+      .then((items) => this.setState({ items }));
+  }
+
+  handleInput(event) {
+    const inputValue = event.target.value;
+    this.setState({ inputValue });
+  }
+
+  async handleCategory(event) {
+    const categoryId = event.target.id;
+    await this.setState({ categoryId });
+    this.apiButton();
   }
 
   render() {
-    const { inputValue, loading, notFound, categories } = this.state;
-    if (loading) return <div className="loading">loading...</div>;
+    const { inputValue, notFound, categories, items } = this.state;
     if (notFound) return <div className="not-found">Not found!</div>;
     return (
       <div className="container">
         <aside className="categories">
-          <Categories categories={categories} />
+          <Categories
+            setCategoryId={(event) => this.handleCategory(event)}
+            refreshItems={this.apiButton}
+            categories={categories}
+          />
         </aside>
         <div className="content">
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <input
-            type="text"
-            className="search-input"
-            name="search-input"
-            value={inputValue}
-            onChange={(event) => this.setState({ inputValue: event.target.value })}
-          />
-          <Link to="/cart" data-testid="shopping-cart-button">
-            <i className="fas fa-shopping-cart fa-2x" />
-          </Link>
-          <div className="items-list">ITENS LISTADOS</div>
+          <div className="row">
+            <SearchInput handleInput={(event) => this.handleInput(event)} inputValue={inputValue} />
+            <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
+              Api
+            </button>
+            <Link to="/cart" data-testid="shopping-cart-button">
+              <i className="fas fa-shopping-cart fa-2x" />
+            </Link>
+          </div>
+          <Item items={items} />
         </div>
       </div>
     );
