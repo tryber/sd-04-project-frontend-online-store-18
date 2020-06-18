@@ -17,11 +17,11 @@ class ProductDetail extends React.Component {
             <i className="fas fa-shopping-cart fa-2x" />
           </Link>
         </div>
-        <p>{`${item.title} - R$ ${item.price}`}</p>
+        <h4 data-testid="product-detail-name">{`${item.title} - R$ ${item.price}`}</h4>
         <div className="product-row">
           <img src={item.thumbnail} alt="item" />
           <div className="product-details">
-            <ul>
+            <ul className="product-detail-attributes">
               {item.attributes.map((attribute) => (
                 <li key={attribute.name}>{`${attribute.name}: ${attribute.value_name}`}</li>
               ))}
