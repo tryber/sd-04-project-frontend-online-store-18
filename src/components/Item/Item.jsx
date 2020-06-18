@@ -7,8 +7,9 @@ const Item = (props) => {
     <div className="items-container">
       {items.map((item) => (
         <div data-testid="product" key={item.id} className="item">
-          <img src={item.thumbnail} alt="item" />
           <p>{item.title}</p>
+          <img src={item.thumbnail} alt="item" />
+          <p>{`R$ ${item.price.toFixed(2)}`}</p>
         </div>
       ))}
     </div>
