@@ -1,12 +1,11 @@
 import React from 'react';
 
 class ProductDetail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { item: null };
-  }
   render() {
-    return <div>Hello snippet</div>;
+    console.log(this.props);
+    const { location } = this.props;
+    const { item } = location.state;
+    return <div data-testid="product-detail-name">{item.title}</div>;
   }
 }
 
