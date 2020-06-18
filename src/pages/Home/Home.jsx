@@ -20,6 +20,8 @@ class Home extends React.Component {
     };
 
     this.apiButton = this.apiButton.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleCategory = this.handleCategory.bind(this);
   }
 
   componentDidMount() {
@@ -37,6 +39,17 @@ class Home extends React.Component {
       .then((items) => this.setState({ items }));
   }
 
+  handleInput(event) {
+    const inputValue = event.target.value;
+    this.setState({ inputValue });
+  }
+
+  async handleCategory(event) {
+    const categoryId = event.target.id;
+    await this.setState({ categoryId });
+    this.apiButton();
+  }
+
   render() {
     const { inputValue, notFound, categories, items } = this.state;
     if (notFound) return <div className="not-found">Not found!</div>;
@@ -44,10 +57,7 @@ class Home extends React.Component {
       <div className="container">
         <aside className="categories">
           <Categories
-            setCategoryId={async (event) => {
-              await this.setState({ categoryId: event.target.id });
-              this.apiButton();
-            }}
+            setCategoryId={(event) => this.handleCategory(event)}
             refreshItems={this.apiButton}
             categories={categories}
           />
@@ -57,10 +67,7 @@ class Home extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
           <div className="row">
-            <SearchInput
-              handleInput={(event) => this.setState({ inputValue: event.target.value })}
-              inputValue={inputValue}
-            />
+            <SearchInput handleInput={(event) => this.handleInput(event)} inputValue={inputValue} />
             <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
               Api
             </button>
