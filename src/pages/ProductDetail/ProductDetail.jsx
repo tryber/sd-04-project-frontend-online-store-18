@@ -8,7 +8,7 @@ const ProductDetail = (props) => {
     api.getProductById(props.match.params.id).then((data) => setItem(data));
   }, [props]);
 
-  return <div>{item.title}</div>;
+  return <div data-testid="product-detail-name">{item.title}</div>;
 };
 
 export default ProductDetail;

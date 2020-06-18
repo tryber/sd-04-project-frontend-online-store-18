@@ -5,13 +5,12 @@ import './Item.css';
 
 const Item = (props) => {
   const { items } = props;
-  console.log(items);
   return (
     <div className="items-container">
       {items.map(({ id, title, thumbnail, price }) => (
         <div data-testid="product" key={id} className="item">
           <p>{title}</p>
-          <Link to={`/${id}`}>
+          <Link data-testid="product-detail-link" to={`/${id}`}>
             <img src={thumbnail} alt="item" />
           </Link>
           <p>{`R$ ${price.toFixed(2)}`}</p>
