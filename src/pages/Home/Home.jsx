@@ -44,7 +44,11 @@ class Home extends React.Component {
       <div className="container">
         <aside className="categories">
           <Categories
-            setCategoryId={(event) => this.setState({ categoryId: event.target.id })}
+            setCategoryId={async (event) => {
+              await this.setState({ categoryId: event.target.id });
+              this.apiButton();
+            }}
+            refreshItems={this.apiButton}
             categories={categories}
           />
         </aside>
