@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Categories from '../../components/Categories';
 import Item from '../../components/Item/Item';
+import SearchInput from '../../components/SearchInput/SearchInput';
 
 import './Home.css';
 import * as api from '../../services/api';
@@ -52,13 +53,9 @@ class Home extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
           <div className="row">
-            <input
-              data-testid="query-input"
-              type="text"
-              className="search-input"
-              name="search-input"
-              value={inputValue}
-              onChange={(event) => this.setState({ inputValue: event.target.value })}
+            <SearchInput
+              handleInput={(event) => this.setState({ inputValue: event.target.value })}
+              inputValue={inputValue}
             />
             <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
               Api
