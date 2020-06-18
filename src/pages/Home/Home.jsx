@@ -43,9 +43,7 @@ class Home extends React.Component {
       <div className="container">
         <aside className="categories">
           <Categories
-            setCategoryId={(event) => {
-              this.setState({ categoryId: event.target.id });
-            }}
+            setCategoryId={(event) => this.setState({ categoryId: event.target.id })}
             categories={categories}
           />
         </aside>
@@ -69,9 +67,7 @@ class Home extends React.Component {
               <i className="fas fa-shopping-cart fa-2x" />
             </Link>
           </div>
-          <div className="items-list">
-            <Item items={items} />
-          </div>
+          <Item items={items} />
         </div>
       </div>
     );

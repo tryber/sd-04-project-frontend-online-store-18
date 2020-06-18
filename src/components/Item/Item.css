@@ -5,8 +5,8 @@
 }
 
 .item {
-  width: 150px;
   border: 1px solid black;
   margin: 1%;
   padding: 1%;
+  width: 150px;
 }
