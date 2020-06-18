@@ -1,14 +1,13 @@
 import React from 'react';
-import * as api from '../../services/api';
 
-const ProductDetail = (props) => {
-  const [item, setItem] = React.useState({ title: '' });
-
-  React.useEffect(() => {
-    api.getProductById(props.match.params.id).then((data) => setItem(data));
-  }, [props]);
-
-  return <div data-testid="product-detail-name">{item.title}</div>;
-};
+class ProductDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { item: null };
+  }
+  render() {
+    return <div>Hello snippet</div>;
+  }
+}
 
 export default ProductDetail;
