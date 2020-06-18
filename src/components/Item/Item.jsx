@@ -3,7 +3,6 @@ import './Item.css';
 
 const Item = (props) => {
   const { items } = props;
-  console.log(items);
   return (
     <div className="items-container">
       {items.map((item) => (

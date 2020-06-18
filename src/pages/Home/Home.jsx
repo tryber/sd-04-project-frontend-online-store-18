@@ -14,7 +14,6 @@ class Home extends React.Component {
       categoryId: '',
       categories: [],
       inputValue: '',
-      loading: true,
       notFound: false,
       items: [],
     };
@@ -25,7 +24,7 @@ class Home extends React.Component {
   componentDidMount() {
     api
       .getCategories()
-      .then((categories) => this.setState({ categories, loading: false }))
+      .then((categories) => this.setState({ categories }))
       .catch((err) => console.error(err.message));
   }
 
@@ -38,8 +37,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { inputValue, loading, notFound, categories, items } = this.state;
-    if (loading) return <div className="loading">loading...</div>;
+    const { inputValue, notFound, categories, items } = this.state;
     if (notFound) return <div className="not-found">Not found!</div>;
     return (
       <div className="container">
