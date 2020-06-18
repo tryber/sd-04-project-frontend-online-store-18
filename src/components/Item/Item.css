@@ -1,4 +1,12 @@
 .items-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.item {
+  width: 150px;
+  border: 1px solid black;
+  margin: 1%;
+  padding: 1%;
 }

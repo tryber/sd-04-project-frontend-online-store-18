@@ -53,20 +53,22 @@ class Home extends React.Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <input
-            data-testid="query-input"
-            type="text"
-            className="search-input"
-            name="search-input"
-            value={inputValue}
-            onChange={(event) => this.setState({ inputValue: event.target.value })}
-          />
-          <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
-            Api
-          </button>
-          <Link to="/cart" data-testid="shopping-cart-button">
-            <i className="fas fa-shopping-cart fa-2x" />
-          </Link>
+          <div className="row">
+            <input
+              data-testid="query-input"
+              type="text"
+              className="search-input"
+              name="search-input"
+              value={inputValue}
+              onChange={(event) => this.setState({ inputValue: event.target.value })}
+            />
+            <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
+              Api
+            </button>
+            <Link to="/cart" data-testid="shopping-cart-button">
+              <i className="fas fa-shopping-cart fa-2x" />
+            </Link>
+          </div>
           <div className="items-list">
             <Item items={items} />
           </div>
