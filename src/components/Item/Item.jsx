@@ -10,6 +10,9 @@ const Item = (props) => {
           <p>{item.title}</p>
           <img src={item.thumbnail} alt="item" />
           <p>{`R$ ${item.price.toFixed(2)}`}</p>
+          <button data-testid="product-add-to-cart" type="button">
+            Add to cart
+          </button>
         </div>
       ))}
     </div>
