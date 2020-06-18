@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Categories from '../../components/Categories';
+import Item from '../../components/Item/Item';
+
 import './Home.css';
 import * as api from '../../services/api';
 
@@ -8,7 +10,14 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { categories: [], inputValue: '', loading: true, notFound: false };
+    this.state = {
+      categoryId: '',
+      categories: [],
+      inputValue: '',
+      loading: true,
+      notFound: false,
+      items: [],
+    };
   }
 
   componentDidMount() {
@@ -18,14 +27,28 @@ class Home extends React.Component {
       .catch((err) => console.error(err.message));
   }
 
+  componentDidUpdate(_, prevState) {
+    const { categoryId, inputValue } = this.state;
+    if (prevState.categoryId === categoryId && prevState.inputValue === inputValue) return 'olá';
+    return api
+      .getProductsFromCategoryAndQuery(categoryId, inputValue)
+      .then((data) => data.results)
+      .then((items) => this.setState({ items }));
+  }
+
   render() {
-    const { inputValue, loading, notFound, categories } = this.state;
+    const { inputValue, loading, notFound, categories, items } = this.state;
     if (loading) return <div className="loading">loading...</div>;
     if (notFound) return <div className="not-found">Not found!</div>;
     return (
       <div className="container">
         <aside className="categories">
-          <Categories categories={categories} />
+          <Categories
+            setCategoryId={(event) => {
+              this.setState({ categoryId: event.target.id });
+            }}
+            categories={categories}
+          />
         </aside>
         <div className="content">
           <p data-testid="home-initial-message">
@@ -41,7 +64,9 @@ class Home extends React.Component {
           <Link to="/cart" data-testid="shopping-cart-button">
             <i className="fas fa-shopping-cart fa-2x" />
           </Link>
-          <div className="items-list">ITENS LISTADOS</div>
+          <div className="items-list">
+            <Item items={items} />
+          </div>
         </div>
       </div>
     );
