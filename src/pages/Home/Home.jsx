@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Categories from '../../components/Categories';
 import Item from '../../components/Item/Item';
@@ -18,6 +18,8 @@ class Home extends React.Component {
       notFound: false,
       items: [],
     };
+
+    this.apiButton = this.apiButton.bind(this);
   }
 
   componentDidMount() {
@@ -27,9 +29,8 @@ class Home extends React.Component {
       .catch((err) => console.error(err.message));
   }
 
-  componentDidUpdate(_, prevState) {
+  async apiButton() {
     const { categoryId, inputValue } = this.state;
-    if (prevState.categoryId === categoryId && prevState.inputValue === inputValue) return 'olá';
     return api
       .getProductsFromCategoryAndQuery(categoryId, inputValue)
       .then((data) => data.results)
@@ -55,12 +56,16 @@ class Home extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
           <input
+            data-testid="query-input"
             type="text"
             className="search-input"
             name="search-input"
             value={inputValue}
             onChange={(event) => this.setState({ inputValue: event.target.value })}
           />
+          <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
+            Api
+          </button>
           <Link to="/cart" data-testid="shopping-cart-button">
             <i className="fas fa-shopping-cart fa-2x" />
           </Link>

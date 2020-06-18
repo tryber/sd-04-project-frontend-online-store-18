@@ -7,7 +7,7 @@ const Item = (props) => {
   return (
     <div className="items-container">
       {items.map((item) => (
-        <div>
+        <div data-testid="product" key={item.id}>
           <img src={item.thumbnail} alt="item" />
           <p>{item.title}</p>
         </div>
