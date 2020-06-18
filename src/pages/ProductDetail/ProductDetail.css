@@ -1,13 +1,13 @@
 .product-detail-container {
+  border: 1px solid black;
   margin: 1%;
   padding: 1%;
-  border: 1px solid black;
 }
 
 .top-buttons {
   display: flex;
   justify-content: space-between;
-  margin: 0% 2%;
+  margin: 0 2%;
 }
 
 .product-row {
