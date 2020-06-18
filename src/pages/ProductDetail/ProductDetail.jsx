@@ -5,7 +5,7 @@ import './ProductDetail.css';
 class ProductDetail extends React.Component {
   render() {
     const { location } = this.props;
-    const { item } = location.state;
+    const { item } = location;
     return (
       <div className="product-detail-container">
         <div className="top-buttons">
