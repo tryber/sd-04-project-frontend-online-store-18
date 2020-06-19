@@ -1,11 +1,19 @@
 import React from 'react';
 
-const CompoentName = (props) => {
+const AddToCart = (props) => {
+  const { item } = props;
   return (
-    <div>
-      Hello new Component
-    </div>
+    <button
+      type="button"
+      onClick={() => {
+        const itemsOnCart = JSON.parse(localStorage.itemsOnCart);
+        const updateItemsOnCart = [...itemsOnCart, item];
+        localStorage.itemsOnCart = JSON.stringify(updateItemsOnCart);
+      }}
+    >
+      Add to cart
+    </button>
   );
 };
 
-export default CompoentName;
+export default AddToCart;

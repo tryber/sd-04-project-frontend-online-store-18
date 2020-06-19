@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const BackLink = (props) => {
-  console.log(props);
   const { linkTo } = props;
   return (
     <Link to={linkTo} className="back-button">

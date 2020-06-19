@@ -4,13 +4,21 @@ import React from 'react';
 // Relative imports
 import BackLink from '../../components/BackLink';
 import CartLink from '../../components/CartLink';
+import AddToCart from '../../components/AddToCart/AddToCart';
 
 import './ProductDetail.css';
 
 class ProductDetail extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { quantity: 1 };
+  }
+
   render() {
     const { location } = this.props;
     const { item } = location;
+    const { quantity } = this.state;
     return (
       <div className="product-detail-container">
         <div className="top-buttons">
@@ -28,6 +36,7 @@ class ProductDetail extends React.Component {
             </ul>
           </div>
         </div>
+        <AddToCart item={item} quantity={quantity} />
       </div>
     );
   }

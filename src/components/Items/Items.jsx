@@ -1,5 +1,8 @@
+// Absolute imports
 import React from 'react';
 import { Link } from 'react-router-dom';
+// Relative imports
+import AddToCart from '../AddToCart/AddToCart';
 
 import './Items.css';
 
@@ -14,9 +17,7 @@ const Item = (props) => {
             <img src={item.thumbnail} alt="item" />
           </Link>
           <p>{`R$ ${item.price.toFixed(2)}`}</p>
-          <button data-testid="product-add-to-cart" type="button">
-            Add to cart
-          </button>
+          <AddToCart item={item} />
         </div>
       ))}
     </div>
