@@ -13,6 +13,11 @@ class ShoppingCart extends React.Component {
 
     this.getQuantity = this.getQuantity.bind(this);
     this.updateState = this.updateState.bind(this);
+    this.renderItems = this.renderItems.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateState();
   }
 
   getQuantity(itemTitle) {
@@ -28,9 +33,28 @@ class ShoppingCart extends React.Component {
     this.setState({ items });
   }
 
-  render() {
+  renderItems() {
     const { items } = this.state;
-    this.updateState();
+    return items.length === 0 ? (
+      <div className="shopping-cart-empty" data-testid="shopping-cart-empty-message">
+        Seu carrinho está vazio
+        <i className="fas fa-box-open fa-5x" />
+      </div>
+    ) : (
+      items.map((item) => (
+        <div key={`${item.id}${this.getQuantity(item.title)}`}>
+          <span data-testid="shopping-cart-product-name" className="item-title">
+            {item.title}
+          </span>
+          <span data-testid="shopping-cart-product-quantity" className="item-quantity">
+            {this.getQuantity(item.title)}
+          </span>
+        </div>
+      ))
+    );
+  }
+
+  render() {
     return (
       <div className="shopping-cart">
         <BackLink linkTo="/" />
@@ -40,23 +64,7 @@ class ShoppingCart extends React.Component {
             <i className="fas fa-shopping-cart fa-2x" data-testeid="shopping-cart-button" />
             <p>Carrinho de Compras</p>
           </div>
-          {items.length === 0 ? (
-            <div className="shopping-cart-empty" data-testid="shopping-cart-empty-message">
-              Seu carrinho está vazio
-              <i className="fas fa-box-open fa-5x" />
-            </div>
-          ) : (
-            items.map((item) => (
-              <div key={`${item.id}${this.getQuantity(item.title)}`}>
-                <span data-testid="shopping-cart-product-name" className="item-title">
-                  {item.title}
-                </span>
-                <span data-testid="shopping-cart-product-quantity" className="item-quantity">
-                  {this.getQuantity(item.title)}
-                </span>
-              </div>
-            ))
-          )}
+          {this.renderItems()}
         </div>
       </div>
     );
