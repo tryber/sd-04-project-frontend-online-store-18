@@ -1,7 +1,10 @@
+// Absolute imports
 import React from 'react';
 import { Link } from 'react-router-dom';
+// Relative imports
+import AddToCart from '../AddToCart/AddToCart';
 
-import './Item.css';
+import './Items.css';
 
 const Item = (props) => {
   const { items } = props;
@@ -10,13 +13,11 @@ const Item = (props) => {
       {items.map((item) => (
         <div data-testid="product" key={item.id} className="item">
           <p>{item.title}</p>
-          <Link data-testid="product-detail-link" to={{ pathname: `/${item.id}`, state: { item } }}>
+          <Link data-testid="product-detail-link" to={{ pathname: `/${item.id}`, item }}>
             <img src={item.thumbnail} alt="item" />
           </Link>
           <p>{`R$ ${item.price.toFixed(2)}`}</p>
-          <button data-testid="product-add-to-cart" type="button">
-            Add to cart
-          </button>
+          <AddToCart dataTestid="product-add-to-cart" item={item} quantity={1} />
         </div>
       ))}
     </div>
