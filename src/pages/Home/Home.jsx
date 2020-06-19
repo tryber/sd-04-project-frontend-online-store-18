@@ -1,8 +1,10 @@
+// Absolute imports
 import React from 'react';
-import { Link } from 'react-router-dom';
+// Relative imports
 import Categories from '../../components/Categories';
-import Item from '../../components/Item/Item';
+import Items from '../../components/Items/Items';
 import SearchInput from '../../components/SearchInput/SearchInput';
+import CartLink from '../../components/CartLink';
 
 import './Home.css';
 import * as api from '../../services/api';
@@ -71,11 +73,9 @@ class Home extends React.Component {
             <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
               Api
             </button>
-            <Link to="/cart" data-testid="shopping-cart-button">
-              <i className="fas fa-shopping-cart fa-2x" />
-            </Link>
+            <CartLink />
           </div>
-          <Item items={items} />
+          <Items items={items} />
         </div>
       </div>
     );

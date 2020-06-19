@@ -1,5 +1,10 @@
+// Absolute imports
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+// Relative imports
+import BackLink from '../../components/BackLink';
+import CartLink from '../../components/CartLink';
+
 import './ProductDetail.css';
 
 class ProductDetail extends React.Component {
@@ -9,13 +14,8 @@ class ProductDetail extends React.Component {
     return (
       <div className="product-detail-container">
         <div className="top-buttons">
-          <Link to="/" className="back-button">
-            <i className="fas fa-long-arrow-alt-left fa-2x" />
-            <span className="back-button-text">Voltar</span>
-          </Link>
-          <Link to="/cart" data-testid="shopping-cart-button">
-            <i className="fas fa-shopping-cart fa-2x" />
-          </Link>
+          <BackLink linkTo="/" />
+          <CartLink />
         </div>
         <h4 data-testid="product-detail-name">{`${item.title} - R$ ${item.price}`}</h4>
         <div className="product-row">

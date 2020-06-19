@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './Item.css';
+import './Items.css';
 
 const Item = (props) => {
   const { items } = props;

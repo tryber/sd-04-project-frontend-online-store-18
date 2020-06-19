@@ -1,14 +1,13 @@
+// Absolute imports
 import React from 'react';
-import { Link } from 'react-router-dom';
+// Relative imports
+import BackLink from '../../components/BackLink';
 
 import './ShoppingCart.css';
 
 const ShoppingCart = () => (
   <div className="shopping-cart">
-    <Link to="/" className="back-button">
-      <i className="fas fa-long-arrow-alt-left fa-2x" />
-      <span className="back-button-text">Voltar</span>
-    </Link>
+    <BackLink linkTo="/" />
     <div className="shopping-cart-container">
       <div className="row">
         <br />
