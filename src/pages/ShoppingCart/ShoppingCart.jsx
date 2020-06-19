@@ -12,14 +12,7 @@ class ShoppingCart extends React.Component {
     this.state = { items: [] };
 
     this.getQuantity = this.getQuantity.bind(this);
-  }
-
-  componentDidMount() {
-    console.log('ShoppingCart Mounted');
-    if (!localStorage.itemsOnCart) localStorage.itemsOnCart = JSON.stringify([]);
-    const items = JSON.parse(localStorage.itemsOnCart);
-    console.log(items);
-    this.setState({ items });
+    this.updateState = this.updateState.bind(this);
   }
 
   getQuantity(itemTitle) {
@@ -28,8 +21,16 @@ class ShoppingCart extends React.Component {
     return quantity;
   }
 
+  updateState() {
+    if (!localStorage.itemsOnCart) localStorage.itemsOnCart = JSON.stringify([]);
+    const items = JSON.parse(localStorage.itemsOnCart);
+    console.log(items);
+    this.setState({ items });
+  }
+
   render() {
     const { items } = this.state;
+    this.updateState();
     return (
       <div className="shopping-cart">
         <BackLink linkTo="/" />
@@ -45,14 +46,16 @@ class ShoppingCart extends React.Component {
               <i className="fas fa-box-open fa-5x" />
             </div>
           ) : (
-            items.map((item, index) => {
-              return (
-                <div key={`${item.id}${index}`}>
-                  <span data-testid="shopping-cart-product-name" className="item-title">{item.title}</span>
-                  <span data-testid="shopping-cart-product-quantity" className="item-quantity">{this.getQuantity(item.title)}</span>
-                </div>
-              );
-            })
+            items.map((item) => (
+              <div key={`${item.id}${this.getQuantity(item.title)}`}>
+                <span data-testid="shopping-cart-product-name" className="item-title">
+                  {item.title}
+                </span>
+                <span data-testid="shopping-cart-product-quantity" className="item-quantity">
+                  {this.getQuantity(item.title)}
+                </span>
+              </div>
+            ))
           )}
         </div>
       </div>
