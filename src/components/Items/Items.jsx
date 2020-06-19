@@ -17,7 +17,7 @@ const Item = (props) => {
             <img src={item.thumbnail} alt="item" />
           </Link>
           <p>{`R$ ${item.price.toFixed(2)}`}</p>
-          <AddToCart item={item} />
+          <AddToCart item={item} dataTestid="produt-add-to-cart" />
         </div>
       ))}
     </div>

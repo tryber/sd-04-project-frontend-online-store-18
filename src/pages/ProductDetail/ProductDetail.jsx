@@ -36,7 +36,7 @@ class ProductDetail extends React.Component {
             </ul>
           </div>
         </div>
-        <AddToCart item={item} quantity={quantity} />
+        <AddToCart item={item} quantity={quantity} dataTestid="product-detail-add-to-cart" />
       </div>
     );
   }
