@@ -26,36 +26,24 @@ const checkEquals = (item2Put, itensSaved) => {
   itensSaved.forEach((element) => {
     if (Object.values(element)[0] === comparacaoItem) {
       respOfCall = true;
-    };
-  })
+    }
+  });
   return respOfCall;
+};
+
+const initStorage = (itemParam) => {
+  localStorage.itemsOnCart = JSON.stringify([]);
+  // crlId === Controlador do Id;
+  localStorage.crlId = JSON.stringify([]);
+  updateCrtId(Object.values(itemParam)[0]);
+
+  // crlQuant === Controlador da quantidade dos produtos;
+  localStorage.crlQuant = JSON.stringify([]);
+  updateCrtQuant(Object.values(itemParam)[0]);
 };
 
 const AddToCart = (props) => {
   const { item, dataTestid } = props;
-
-  const initStorage = (itemParam) => {
-    localStorage.itemsOnCart = JSON.stringify([]);
-
-    // crlId === Controlador do Id;
-    localStorage.crlId = JSON.stringify([]);
-    updateCrtId(Object.values(itemParam)[0]);
-
-    // crlQuant === Controlador da quantidade dos produtos;
-    localStorage.crlQuant = JSON.stringify([]);
-    updateCrtQuant(Object.values(itemParam)[0]);
-  };
-
-  const auxiliarAddCArt = (itemParam, itemsOnCart, updateItemsOnCart) => {
-    if (checkEquals(itemParam, itemsOnCart)) {
-      updateItemsOnCart.pop();
-      updateCrtQuant(Object.values(itemParam)[0]);
-    } else {
-      updateCrtId(Object.values(itemParam)[0]);
-      updateCrtQuant(Object.values(itemParam)[0]);
-    }
-    return updateItemsOnCart;
-  };
 
   const addToCart = (itemParam) => {
     if (!localStorage.itemsOnCart) {
@@ -64,7 +52,13 @@ const AddToCart = (props) => {
     const itemsOnCart = JSON.parse(localStorage.itemsOnCart);
     let updateItemsOnCart = [...itemsOnCart, itemParam];
     if (itemsOnCart.length !== 0) {
-      updateItemsOnCart = auxiliarAddCArt(itemParam, itemsOnCart, updateItemsOnCart);
+      if (checkEquals(itemParam, itemsOnCart)) {
+        updateItemsOnCart.pop();
+        updateCrtQuant(Object.values(itemParam)[0]);
+      } else {
+        updateCrtId(Object.values(itemParam)[0]);
+        updateCrtQuant(Object.values(itemParam)[0]);
+      }
     }
     localStorage.itemsOnCart = JSON.stringify(updateItemsOnCart);
     // console.log();
