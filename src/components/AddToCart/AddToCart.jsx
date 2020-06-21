@@ -1,38 +1,38 @@
 import React from 'react';
 
+const updateCrtQuant = (idWanted) => {
+  const itemsOnCrlId = JSON.parse(localStorage.crlId);
+  const itemsOnCrlQuant = JSON.parse(localStorage.crlQuant);
+  const indexChange = itemsOnCrlId.indexOf(idWanted);
+  if (itemsOnCrlQuant[indexChange]) {
+    itemsOnCrlQuant[indexChange] += 1;
+  } else {
+    itemsOnCrlQuant[indexChange] = 1;
+  }
+  // console.log(itemsOnCrlQuant);
+  localStorage.crlQuant = JSON.stringify(itemsOnCrlQuant);
+};
+
+const updateCrtId = (newId) => {
+  const itemsOnCrl = JSON.parse(localStorage.crlId);
+  const updateItemsOnCrl = [...itemsOnCrl, newId];
+  localStorage.crlId = JSON.stringify(updateItemsOnCrl);
+};
+
+const checkEquals = (item2Put, itensSaved) => {
+  const comparacaoItem = Object.values(item2Put)[0];
+  let respOfCall = false;
+
+  itensSaved.forEach((element) => {
+    if (Object.values(element)[0] === comparacaoItem) {
+      respOfCall = true;
+    };
+  })
+  return respOfCall;
+};
+
 const AddToCart = (props) => {
   const { item, dataTestid } = props;
-
-  const updateCrtQuant = (idWanted) => {
-    const itemsOnCrlId = JSON.parse(localStorage.crlId);
-    const itemsOnCrlQuant = JSON.parse(localStorage.crlQuant);
-    const indexChange = itemsOnCrlId.indexOf(idWanted);
-    if (itemsOnCrlQuant[indexChange]) {
-      itemsOnCrlQuant[indexChange] += 1;
-    } else {
-      itemsOnCrlQuant[indexChange] = 1;
-    }
-    // console.log(itemsOnCrlQuant);
-    localStorage.crlQuant = JSON.stringify(itemsOnCrlQuant);
-  };
-
-  const updateCrtId = (newId) => {
-    const itemsOnCrl = JSON.parse(localStorage.crlId);
-    const updateItemsOnCrl = [...itemsOnCrl, newId];
-    localStorage.crlId = JSON.stringify(updateItemsOnCrl);
-  };
-
-  const checkEquals = (item2Put, itensSaved) => {
-    const comparacaoItem = Object.values(item2Put)[0];
-    let respOfCall = false;
-
-    itensSaved.forEach((element) => {
-      if (Object.values(element)[0] === comparacaoItem) {
-        respOfCall = true;
-      };
-    })
-    return respOfCall;
-  };
 
   const initStorage = (itemParam) => {
     localStorage.itemsOnCart = JSON.stringify([]);
