@@ -11,12 +11,12 @@ class ShoppingCart extends React.Component {
 
     this.state = { items: [] };
 
-    this.getQuantity = this.getQuantity.bind(this);
+    /*this.getQuantity = this.getQuantity.bind(this);
     this.updateState = this.updateState.bind(this);
-    this.renderItems = this.renderItems.bind(this);
+    this.renderItems = this.renderItems.bind(this);*/
   }
 
-  componentDidMount() {
+  /*componentDidMount() {
     this.updateState();
   }
 
@@ -52,7 +52,7 @@ class ShoppingCart extends React.Component {
         </div>
       ))
     );
-  }
+  }*/
 
   render() {
     return (
@@ -61,10 +61,10 @@ class ShoppingCart extends React.Component {
         <div className="shopping-cart-container">
           <div className="row">
             <br />
-            <i className="fas fa-shopping-cart fa-2x" data-testeid="shopping-cart-button" />
+            {/*<i className="fas fa-shopping-cart fa-2x" data-testeid="shopping-cart-button" />*/}
             <p>Carrinho de Compras</p>
           </div>
-          {this.renderItems()}
+          {/*this.renderItems()*/}
         </div>
       </div>
     );
