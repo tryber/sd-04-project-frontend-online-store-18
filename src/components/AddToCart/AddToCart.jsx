@@ -9,7 +9,6 @@ const updateCrtQuant = (idWanted) => {
   } else {
     itemsOnCrlQuant[indexChange] = 1;
   }
-  // console.log(itemsOnCrlQuant);
   localStorage.crlQuant = JSON.stringify(itemsOnCrlQuant);
 };
 
@@ -65,7 +64,6 @@ const AddToCart = (props) => {
       updateItemsOnCart = auxAddToCart(itemParam, itemsOnCart, updateItemsOnCart);
     }
     localStorage.itemsOnCart = JSON.stringify(updateItemsOnCart);
-    // console.log();
   };
   return (
     <button data-testid={dataTestid} type="button" onClick={() => addToCart(item)}>

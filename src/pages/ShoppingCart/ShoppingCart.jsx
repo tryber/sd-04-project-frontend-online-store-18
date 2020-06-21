@@ -2,6 +2,8 @@
 import React from 'react';
 // Relative imports
 import BackLink from '../../components/BackLink';
+import QuantButton from '../../components/QuantButton/QuantButton';
+                        //'../../components/CartLink';
 
 import './ShoppingCart.css';
 
@@ -9,22 +11,19 @@ class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { items: [] };
+    this.state = { 
+      items: [],
+    };
 
-    /*this.getQuantity = this.getQuantity.bind(this);
+    this.getQuantity = this.getQuantity.bind(this);
     this.updateState = this.updateState.bind(this);
-    this.renderItems = this.renderItems.bind(this);*/
+    this.renderItems = this.renderItems.bind(this);
   }
 
-  /*componentDidMount() {
+  componentDidMount() {
     this.updateState();
   }
 
-  getQuantity(itemTitle) {
-    const { items } = this.state;
-    const quantity = items.filter(({ title }) => itemTitle === title).length;
-    return quantity;
-  }
 
   updateState() {
     if (!localStorage.itemsOnCart) localStorage.itemsOnCart = JSON.stringify([]);
@@ -42,7 +41,7 @@ class ShoppingCart extends React.Component {
       </div>
     ) : (
       items.map((item) => (
-        <div key={`${item.id}${this.getQuantity(item.title)}`}>
+        <div key={`${item.id}`}>
           <span data-testid="shopping-cart-product-name" className="item-title">
             {item.title}
           </span>
@@ -52,7 +51,7 @@ class ShoppingCart extends React.Component {
         </div>
       ))
     );
-  }*/
+  }
 
   render() {
     return (
@@ -64,6 +63,7 @@ class ShoppingCart extends React.Component {
             {/*<i className="fas fa-shopping-cart fa-2x" data-testeid="shopping-cart-button" />*/}
             <p>Carrinho de Compras</p>
           </div>
+          <QuantButton itemId='0' numInitial='5'/>
           {/*this.renderItems()*/}
         </div>
       </div>
