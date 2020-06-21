@@ -42,6 +42,16 @@ const initStorage = (itemParam) => {
   updateCrtQuant(Object.values(itemParam)[0]);
 };
 
+const auxAddToCart = (itemParam, itemsOnCart, updateItemsOnCart) => {
+  if (checkEquals(itemParam, itemsOnCart)) {
+    updateItemsOnCart.pop();
+  } else {
+    updateCrtId(Object.values(itemParam)[0]);
+  }
+  updateCrtQuant(Object.values(itemParam)[0]);
+  return updateItemsOnCart;
+};
+
 const AddToCart = (props) => {
   const { item, dataTestid } = props;
 
@@ -52,13 +62,7 @@ const AddToCart = (props) => {
     const itemsOnCart = JSON.parse(localStorage.itemsOnCart);
     let updateItemsOnCart = [...itemsOnCart, itemParam];
     if (itemsOnCart.length !== 0) {
-      if (checkEquals(itemParam, itemsOnCart)) {
-        updateItemsOnCart.pop();
-        updateCrtQuant(Object.values(itemParam)[0]);
-      } else {
-        updateCrtId(Object.values(itemParam)[0]);
-        updateCrtQuant(Object.values(itemParam)[0]);
-      }
+      updateItemsOnCart = auxAddToCart(itemParam, itemsOnCart, updateItemsOnCart);
     }
     localStorage.itemsOnCart = JSON.stringify(updateItemsOnCart);
     // console.log();
