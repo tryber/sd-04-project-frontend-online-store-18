@@ -9,11 +9,10 @@ const AddToCart = (props) => {
     const indexChange = itemsOnCrlId.indexOf(idWanted);
     if (itemsOnCrlQuant[indexChange]) {
       itemsOnCrlQuant[indexChange] += 1;
-    }
-    else {
+    } else {
       itemsOnCrlQuant[indexChange] = 1;
     }
-    //console.log(itemsOnCrlQuant);
+    // console.log(itemsOnCrlQuant);
     localStorage.crlQuant = JSON.stringify(itemsOnCrlQuant);
   };
 
@@ -27,36 +26,48 @@ const AddToCart = (props) => {
     const comparacaoItem = Object.values(item2Put)[0];
     let respOfCall = false;
 
-    itensSaved.forEach(element => {
-    if (Object.values(element)[0] === comparacaoItem) {
-      respOfCall = true;
-    };
-    });
+    itensSaved.forEach((element) => {
+      if (Object.values(element)[0] === comparacaoItem) {
+        respOfCall = true;
+      };
+    })
     return respOfCall;
+  };
+
+  const initStorage = (itemParam) => {
+    localStorage.itemsOnCart = JSON.stringify([]);
+
+    // crlId === Controlador do Id;
+    localStorage.crlId = JSON.stringify([]);
+    updateCrtId(Object.values(itemParam)[0]);
+
+    // crlQuant === Controlador da quantidade dos produtos;
+    localStorage.crlQuant = JSON.stringify([]);
+    updateCrtQuant(Object.values(itemParam)[0]);
+  };
+
+  const auxiliarAddCArt = (itemParam, itemsOnCart, updateItemsOnCart) => {
+    if (checkEquals(itemParam, itemsOnCart)) {
+      updateItemsOnCart.pop();
+      updateCrtQuant(Object.values(itemParam)[0]);
+    } else {
+      updateCrtId(Object.values(itemParam)[0]);
+      updateCrtQuant(Object.values(itemParam)[0]);
+    }
+    return updateItemsOnCart;
   };
 
   const addToCart = (itemParam) => {
     if (!localStorage.itemsOnCart) {
-      localStorage.itemsOnCart = JSON.stringify([]);
-      localStorage.crlId = JSON.stringify([]);      // crlId === Controlador do Id;
-      updateCrtId(Object.values(itemParam)[0]);
-      localStorage.crlQuant = JSON.stringify([]);   // crlQuant === Controlador da quantidade dos produtos;
-      updateCrtQuant(Object.values(itemParam)[0]);
+      initStorage(itemParam);
     }
     const itemsOnCart = JSON.parse(localStorage.itemsOnCart);
-    const updateItemsOnCart = [...itemsOnCart, itemParam];
+    let updateItemsOnCart = [...itemsOnCart, itemParam];
     if (itemsOnCart.length !== 0) {
-      if (checkEquals(itemParam, itemsOnCart)) {
-        updateItemsOnCart.pop();
-        updateCrtQuant(Object.values(itemParam)[0]);
-      }
-      else {
-        updateCrtId(Object.values(itemParam)[0]);
-        updateCrtQuant(Object.values(itemParam)[0]);
-      }
-      //console.log();
+      updateItemsOnCart = auxiliarAddCArt(itemParam, itemsOnCart, updateItemsOnCart);
     }
     localStorage.itemsOnCart = JSON.stringify(updateItemsOnCart);
+    // console.log();
   };
   return (
     <button data-testid={dataTestid} type="button" onClick={() => addToCart(item)}>
