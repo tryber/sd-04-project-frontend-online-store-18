@@ -25,17 +25,16 @@ class ProductDetail extends React.Component {
     }
   }
 
-  
   putAddCart(item) {
     return (
       <AddToCart
-      dataTestid="product-detail-add-to-cart"
-      item={item}
-      quantity={this.state.quantity}
-      plusQuant={true}
+        dataTestid="product-detail-add-to-cart"
+        item={item}
+        quantity={this.state.quantity}
+        plusQuant={true}
       />
-      )
-    };
+    );
+  }
 
     renderQuantButtons() {
       return (
@@ -51,9 +50,9 @@ class ProductDetail extends React.Component {
       );
     }
 
-    render() {
-      const { location } = this.props;
-      const { item } = location;
+  render() {
+    const { location } = this.props;
+    const { item } = location;
     return (
       <div>
         <div className="product-detail-container">
