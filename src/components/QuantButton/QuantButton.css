@@ -8,8 +8,9 @@ button {
 }
 
 .number {
+	border-radius: 15%;
   border: solid 1px black;
-  border-radius: 15%;
+	min-width: 7%;
   margin: 3% 7%;
-  padding: 3% 10%;;
+	padding: 3% 10%;
 }

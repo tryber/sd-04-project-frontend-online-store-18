@@ -8,6 +8,7 @@ export default class QuantButton extends Component {
     this.state = { num: numInitial };
     this.backIndex = this.backIndex.bind(this);
     this.changeStorage = this.changeStorage.bind(this);
+    this.backIndex = this.backIndex.bind(this);
   }
 
   backIndex(id) {
