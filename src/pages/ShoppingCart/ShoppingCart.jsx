@@ -6,6 +6,12 @@ import QuantButton from '../../components/QuantButton/QuantButton';
 
 import './ShoppingCart.css';
 
+const pickQuantify = (index) => {
+  if (!localStorage.crlQuant) localStorage.crlQuant = JSON.stringify([]);
+  const quant = JSON.parse(localStorage.crlQuant);
+  return quant[index];
+}
+
 class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +20,6 @@ class ShoppingCart extends React.Component {
 
     this.updateState = this.updateState.bind(this);
     this.renderItems = this.renderItems.bind(this);
-    this.pickQuantify = this.pickQuantify.bind(this);
   }
 
   componentDidMount() {
@@ -26,12 +31,6 @@ class ShoppingCart extends React.Component {
     const items = JSON.parse(localStorage.itemsOnCart);
     // console.log(items);
     this.setState({ items });
-  }
-
-  pickQuantify(index) {
-    if (!localStorage.crlQuant) localStorage.crlQuant = JSON.stringify([]);
-    const quant = JSON.parse(localStorage.crlQuant);
-    return quant[index];
   }
 
   renderItems() {
@@ -49,7 +48,7 @@ class ShoppingCart extends React.Component {
             {item.title}
           </span>
           <div data-testid="shopping-cart-product-quantity" className="item-quantity">
-            <QuantButton itemId={item.id} numInitial={this.pickQuantify(index)} />
+            <QuantButton itemId={item.id} numInitial={pickQuantify(index)} />
           </div>
         </div>
       ))
