@@ -1,0 +1,92 @@
+.infoBuy-container {
+  align-items: baseline;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  height: 170px;
+  margin: 20px;
+  width: 1200px;
+}
+
+.infoBuy-container h3 {
+  margin: 10px;
+}
+
+.infoBuy-form {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.infoBuy-form input {
+  border: 1px solid black;
+  height: 20px;
+  margin: 2px;
+  margin-left: 10px;
+  padding: 5px;
+  width: 250px;
+}
+
+.infoBuy-form select {
+  border: 1px solid black;
+  height: 31px;
+  margin: 3px;
+  margin-left: 10px;
+  width: 150px;
+}
+
+.payment-container {
+  align-content: flex-start;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 180px;
+  margin-left: 20px;
+  width: 1200px;
+}
+
+.container-codbar {
+  align-items: center;
+  display: flex;
+  height: 60px;
+  justify-content: space-around;
+  margin-left: 10px;
+  width: 150px;
+}
+
+.payment-container h3 {
+  margin-left: 10px;
+  width: 200px;
+}
+
+.payment-container h4 {
+  margin: 15px;
+  margin-top: 5px;
+}
+
+.container-card {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 98px;
+  justify-content: flex-start;
+  margin-top: 60px;
+  margin-right: 600px;
+  width: 400px;
+}
+
+.container-card h4 {
+  margin-left: 1px;
+}
+
+.container-card-input {
+  align-items: center;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  justify-content: space-around;
+  width: 400px;
+}
