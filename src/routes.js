@@ -8,9 +8,9 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/cart" component={ShoppingCart} />
-      {/*<Route exact path="/checkout" component={} />*/}
+      { /*<Route exact path="/checkout" component={} />*/ }
       <Route path="/:id" component={ProductDetail} />
-      {/* <Route path="/" component={} /> */}
+      { /* <Route path="/" component={} /> */ }
     </Switch>
   </BrowserRouter>
 );

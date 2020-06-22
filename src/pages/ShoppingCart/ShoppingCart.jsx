@@ -34,6 +34,15 @@ class ShoppingCart extends React.Component {
     this.setState({ items });
   }
 
+  finalPrice() {
+    let price = 0;
+
+    this.state.items.map((item, index) => {
+      return price += item.price * pickQuantify(index);
+    });
+    return price;
+  }
+
   renderItems() {
     const { items } = this.state;
     return items.length === 0 ? (
@@ -61,15 +70,6 @@ class ShoppingCart extends React.Component {
     );
   }
 
-  finalPrice() {
-    let price = 0;
-
-    this.state.items.map((item, index) => {
-      price += item.price * pickQuantify(index);
-    });
-    return price;
-  }
-
   render() {
     return (
       <div className="shopping-cart">
@@ -82,7 +82,7 @@ class ShoppingCart extends React.Component {
           </div>
           {this.renderItems()}
           <div>
-            <h4 />
+            <p />
             Valor Total da Compra: R$ {this.finalPrice()}
           </div>
           <Link to="/checkout">

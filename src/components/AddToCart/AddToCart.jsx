@@ -1,18 +1,23 @@
 import React from 'react';
 
-const updateCrtQuant = (idWanted, quantity, plusQuant) => {
-  console.log(quantity);
-  const itemsOnCrlId = JSON.parse(localStorage.crlId);
-  const itemsOnCrlQuant = JSON.parse(localStorage.crlQuant);
-  const indexChange = itemsOnCrlId.indexOf(idWanted);
-  if(!quantity) quantity = 1;
-  if (itemsOnCrlQuant[indexChange] && /*(itemsOnCrlQuant[indexChange] + 1) >= quantity*/ !plusQuant) {
+const realyChange = (itemsOnCrlQuant, indexChange, plusQuant, quantity) => {
+  if (itemsOnCrlQuant[indexChange] && !plusQuant) {
     itemsOnCrlQuant[indexChange] += 1;
   } else if (itemsOnCrlQuant[indexChange] && plusQuant) {
     itemsOnCrlQuant[indexChange] += quantity;
   } else {
     itemsOnCrlQuant[indexChange] = quantity;
   }
+  return itemsOnCrlQuant;
+}
+
+const updateCrtQuant = (idWanted, quantity, plusQuant) => {
+  console.log(quantity);
+  const itemsOnCrlId = JSON.parse(localStorage.crlId);
+  let itemsOnCrlQuant = JSON.parse(localStorage.crlQuant);
+  const indexChange = itemsOnCrlId.indexOf(idWanted);
+  if (!quantity) quantity = 1;
+  itemsOnCrlQuant = realyChange(itemsOnCrlQuant, indexChange, plusQuant, quantity);
   localStorage.crlQuant = JSON.stringify(itemsOnCrlQuant);
 };
 
@@ -63,11 +68,11 @@ const AddToCart = (props) => {
       initStorage(itemParam, quantity, plusQuant);
     }
     const itemsOnCart = JSON.parse(localStorage.itemsOnCart);
-    let updateItemsOnCart = [...itemsOnCart, itemParam];
+    let upItemsOnCart = [...itemsOnCart, itemParam];
     if (itemsOnCart.length !== 0) {
-      updateItemsOnCart = auxAddToCart(itemParam, itemsOnCart, updateItemsOnCart, quantity, plusQuant);
+      upItemsOnCart = auxAddToCart(itemParam, itemsOnCart, upItemsOnCart, quantity, plusQuant);
     }
-    localStorage.itemsOnCart = JSON.stringify(updateItemsOnCart);
+    localStorage.itemsOnCart = JSON.stringify(upItemsOnCart);
   };
   return (
     <button data-testid={dataTestid} type="button" onClick={() => addToCart(item)}>
