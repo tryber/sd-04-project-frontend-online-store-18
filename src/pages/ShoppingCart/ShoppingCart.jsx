@@ -10,10 +10,11 @@ class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { items: [], };
+    this.state = { items: [] };
 
     this.updateState = this.updateState.bind(this);
     this.renderItems = this.renderItems.bind(this);
+    this.pickQuantify = this.pickQuantify.bind(this);
   }
 
   componentDidMount() {
@@ -28,8 +29,6 @@ class ShoppingCart extends React.Component {
   }
 
   pickQuantify(index) {
-    //let quantify = 0;
-
     if (!localStorage.crlQuant) localStorage.crlQuant = JSON.stringify([]);
     const quant = JSON.parse(localStorage.crlQuant);
     return quant[index];
@@ -44,9 +43,8 @@ class ShoppingCart extends React.Component {
       </div>
     ) : (
       items.map((item, index) => (
-        //const = 
         <div key={`${item.id}`} className="itens-container">
-          <img src={item.thumbnail} alt="item"/>
+          <img src={item.thumbnail} alt="item" />
           <span data-testid="shopping-cart-product-name" className="item-title">
             {item.title}
           </span>

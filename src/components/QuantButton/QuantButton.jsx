@@ -5,7 +5,9 @@ export default class QuantButton extends Component {
   constructor(props) {
     super(props);
     const { numInitial } = props;
-    this.state = { num: numInitial, };
+    this.state = { num: numInitial };
+    this.backIndex = this.backIndex.bind(this);
+    this.changeStorage = this.changeStorage.bind(this);
   }
 
   backIndex(id) {
@@ -26,7 +28,7 @@ export default class QuantButton extends Component {
     if ((atualNum + operacao) >= 1) {
       atualNum += operacao;
       this.setState({ num: atualNum });
-      let index = this.backIndex(itemId);
+      const index = this.backIndex(itemId);
       this.changeStorage(index, atualNum);
     }
   }
@@ -34,9 +36,13 @@ export default class QuantButton extends Component {
   render() {
     return (
       <div className="buttons-container">
-        <button onClick={() => this.changeQuant(-1)}><i className="fa fa-minus fa-lg" aria-hidden="true" /></button>
+        <button onClick={() => this.changeQuant(-1)}>
+          <i className="fa fa-minus fa-lg" aria-hidden="true" />
+        </button>
         <div className="number">{this.state.num}</div>
-        <button onClick={() => this.changeQuant(1)}><i className="fa fa-plus fa-lg" aria-hidden="true" /></button>
+        <button onClick={() => this.changeQuant(1)}>
+          <i className="fa fa-plus fa-lg" aria-hidden="true" />
+        </button>
       </div>
     );
   }
