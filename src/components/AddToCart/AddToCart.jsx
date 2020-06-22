@@ -1,7 +1,7 @@
 import React from 'react';
 
 const realyChange = (itemsOnCrlQuant, indexChange, plusQuant, quantity) => {
-  let atualItens = itemsOnCrlQuant;
+  const atualItens = itemsOnCrlQuant;
   if (atualItens[indexChange] && !plusQuant) {
     atualItens[indexChange] += 1;
   } else if (atualItens[indexChange] && plusQuant) {

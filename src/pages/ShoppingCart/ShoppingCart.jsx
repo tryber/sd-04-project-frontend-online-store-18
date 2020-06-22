@@ -37,7 +37,10 @@ class ShoppingCart extends React.Component {
   finalPrice() {
     let price = 0;
 
-    this.state.items.map((item, index) => price += item.price * pickQuantify(index));
+    this.state.items.map((item, index) => {
+      price += item.price * pickQuantify(index);
+      return price;
+    });
     return price;
   }
 

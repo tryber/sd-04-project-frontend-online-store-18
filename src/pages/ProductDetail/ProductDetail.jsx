@@ -25,34 +25,35 @@ class ProductDetail extends React.Component {
     }
   }
 
-  renderQuantButtons() {
-    return (
-      <div className="buttons-container">
-        <button onClick={() => this.changeQuant(-1)}>
-          <i className="fa fa-minus fa-lg" aria-hidden="true" />
-        </button>
-        <div className="number">{this.state.quantity}</div>
-        <button onClick={() => this.changeQuant(1)}>
-          <i className="fa fa-plus fa-lg" aria-hidden="true" />
-        </button>
-      </div>
-    );
-  }
-
+  
   putAddCart(item) {
     return (
       <AddToCart
-        dataTestid="product-detail-add-to-cart"
-        item={item}
-        quantity={this.state.quantity}
-        plusQuant={true}
+      dataTestid="product-detail-add-to-cart"
+      item={item}
+      quantity={this.state.quantity}
+      plusQuant={true}
       />
-    )
-  }
+      )
+    };
 
-  render() {
-    const { location } = this.props;
-    const { item } = location;
+    renderQuantButtons() {
+      return (
+        <div className="buttons-container">
+          <button onClick={() => this.changeQuant(-1)}>
+            <i className="fa fa-minus fa-lg" aria-hidden="true" />
+          </button>
+          <div className="number">{this.state.quantity}</div>
+          <button onClick={() => this.changeQuant(1)}>
+            <i className="fa fa-plus fa-lg" aria-hidden="true" />
+          </button>
+        </div>
+      );
+    }
+
+    render() {
+      const { location } = this.props;
+      const { item } = location;
     return (
       <div>
         <div className="product-detail-container">
