@@ -26,29 +26,30 @@ class ProductDetail extends React.Component {
   }
 
   putAddCart(item) {
+    const verdade = true;
     return (
       <AddToCart
         dataTestid="product-detail-add-to-cart"
         item={item}
         quantity={this.state.quantity}
-        plusQuant={true}
+        plusQuant={verdade}
       />
     );
   }
 
-    renderQuantButtons() {
-      return (
-        <div className="buttons-container">
-          <button onClick={() => this.changeQuant(-1)}>
-            <i className="fa fa-minus fa-lg" aria-hidden="true" />
-          </button>
-          <div className="number">{this.state.quantity}</div>
-          <button onClick={() => this.changeQuant(1)}>
-            <i className="fa fa-plus fa-lg" aria-hidden="true" />
-          </button>
-        </div>
-      );
-    }
+  renderQuantButtons() {
+    return (
+      <div className="buttons-container">
+        <button onClick={() => this.changeQuant(-1)}>
+          <i className="fa fa-minus fa-lg" aria-hidden="true" />
+        </button>
+        <div className="number">{this.state.quantity}</div>
+        <button onClick={() => this.changeQuant(1)}>
+          <i className="fa fa-plus fa-lg" aria-hidden="true" />
+        </button>
+      </div>
+    );
+  }
 
   render() {
     const { location } = this.props;

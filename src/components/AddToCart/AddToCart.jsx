@@ -17,8 +17,9 @@ const updateCrtQuant = (idWanted, quantity, plusQuant) => {
   const itemsOnCrlId = JSON.parse(localStorage.crlId);
   let itemsOnCrlQuant = JSON.parse(localStorage.crlQuant);
   const indexChange = itemsOnCrlId.indexOf(idWanted);
-  if (!quantity) quantity = 1;
-  itemsOnCrlQuant = realyChange(itemsOnCrlQuant, indexChange, plusQuant, quantity);
+  const quant = quantity;
+  if (!quant) quant = 1;
+  itemsOnCrlQuant = realyChange(itemsOnCrlQuant, indexChange, plusQuant, quant);
   localStorage.crlQuant = JSON.stringify(itemsOnCrlQuant);
 };
 
