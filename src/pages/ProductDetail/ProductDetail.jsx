@@ -16,10 +16,44 @@ class ProductDetail extends React.Component {
     this.state = { quantity: 1 };
   }
 
+  changeQuant(operacao) {
+    let atualNum = this.state.quantity;
+    if ((atualNum + operacao) >= 1) {
+      atualNum += operacao;
+      this.setState({ quantity: atualNum });
+      console.log(this.state.quantity);
+    }
+  }
+
+  putAddCart(item) {
+    const verdade = true;
+    return (
+      <AddToCart
+        dataTestid="product-detail-add-to-cart"
+        item={item}
+        quantity={this.state.quantity}
+        plusQuant={verdade}
+      />
+    );
+  }
+
+  renderQuantButtons() {
+    return (
+      <div className="buttons-container">
+        <button onClick={() => this.changeQuant(-1)}>
+          <i className="fa fa-minus fa-lg" aria-hidden="true" />
+        </button>
+        <div className="number">{this.state.quantity}</div>
+        <button onClick={() => this.changeQuant(1)}>
+          <i className="fa fa-plus fa-lg" aria-hidden="true" />
+        </button>
+      </div>
+    );
+  }
+
   render() {
     const { location } = this.props;
     const { item } = location;
-    const { quantity } = this.state;
     return (
       <div>
         <div className="product-detail-container">
@@ -38,7 +72,8 @@ class ProductDetail extends React.Component {
               </ul>
             </div>
           </div>
-          <AddToCart dataTestid="product-detail-add-to-cart" item={item} quantity={quantity} />
+          {this.renderQuantButtons()}
+          {this.putAddCart(item)}
         </div>
         <div className="product-detail-container">
           <Rating />

@@ -1,0 +1,16 @@
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  border-radius: 25%;
+}
+
+.number {
+  border: solid 1px black;
+  border-radius: 15%;
+  margin: 3% 7%;
+  min-width: 7%;
+  padding: 3% 10%;
+}

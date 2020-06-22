@@ -1,9 +1,17 @@
 // Absolute imports
 import React from 'react';
+import { Link } from 'react-router-dom';
 // Relative imports
 import BackLink from '../../components/BackLink';
+import QuantButton from '../../components/QuantButton/QuantButton';
 
 import './ShoppingCart.css';
+
+const pickQuantify = (index) => {
+  if (!localStorage.crlQuant) localStorage.crlQuant = JSON.stringify([]);
+  const quant = JSON.parse(localStorage.crlQuant);
+  return quant[index];
+};
 
 class ShoppingCart extends React.Component {
   constructor(props) {
@@ -11,7 +19,6 @@ class ShoppingCart extends React.Component {
 
     this.state = { items: [] };
 
-    this.getQuantity = this.getQuantity.bind(this);
     this.updateState = this.updateState.bind(this);
     this.renderItems = this.renderItems.bind(this);
   }
@@ -20,17 +27,21 @@ class ShoppingCart extends React.Component {
     this.updateState();
   }
 
-  getQuantity(itemTitle) {
-    const { items } = this.state;
-    const quantity = items.filter(({ title }) => itemTitle === title).length;
-    return quantity;
-  }
-
   updateState() {
     if (!localStorage.itemsOnCart) localStorage.itemsOnCart = JSON.stringify([]);
     const items = JSON.parse(localStorage.itemsOnCart);
-    console.log(items);
+    // console.log(items);
     this.setState({ items });
+  }
+
+  finalPrice() {
+    let price = 0;
+
+    this.state.items.map((item, index) => {
+      price += item.price * pickQuantify(index);
+      return price;
+    });
+    return price;
   }
 
   renderItems() {
@@ -41,14 +52,20 @@ class ShoppingCart extends React.Component {
         <i className="fas fa-box-open fa-5x" />
       </div>
     ) : (
-      items.map((item) => (
-        <div key={`${item.id}${this.getQuantity(item.title)}`}>
-          <span data-testid="shopping-cart-product-name" className="item-title">
+      items.map((item, index) => (
+        <div key={`${item.id}`} className="itens-container">
+          <img src={item.thumbnail} alt="item" />
+          <div data-testid="shopping-cart-product-name" className="item-title">
             {item.title}
-          </span>
-          <span data-testid="shopping-cart-product-quantity" className="item-quantity">
-            {this.getQuantity(item.title)}
-          </span>
+          </div>
+          <div data-testid="shopping-cart-product-quantity" className="item-quantity">
+            <QuantButton
+              dataTestIncrease="product-increase-quantity"
+              dataTestDecreate="product-decrease-quantity"
+              itemId={item.id}
+              numInitial={pickQuantify(index)}
+            />
+          </div>
         </div>
       ))
     );
@@ -61,10 +78,17 @@ class ShoppingCart extends React.Component {
         <div className="shopping-cart-container">
           <div className="row">
             <br />
-            <i className="fas fa-shopping-cart fa-2x" data-testeid="shopping-cart-button" />
+            {<i className="fas fa-shopping-cart fa-2x" data-testeid="shopping-cart-button" />}
             <p>Carrinho de Compras</p>
           </div>
           {this.renderItems()}
+          <div>
+            <p />
+            Valor Total da Compra: R$ {this.finalPrice()}
+          </div>
+          <Link to="/checkout">
+            <span data-testid="checkout-products">Finalizar Compra</span>
+          </Link>
         </div>
       </div>
     );
