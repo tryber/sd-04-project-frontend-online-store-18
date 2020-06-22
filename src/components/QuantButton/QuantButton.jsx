@@ -35,11 +35,11 @@ export default class QuantButton extends Component {
   render() {
     return (
       <div className="buttons-container">
-        <button onClick={() => this.changeQuant(-1)}>
+        <button data-testing="product-decreate-quantity" onClick={() => this.changeQuant(-1)}>
           <i className="fa fa-minus fa-lg" aria-hidden="true" />
         </button>
         <div className="number">{this.state.num}</div>
-        <button onClick={() => this.changeQuant(1)}>
+        <button data-testing="product-increase-quantity" onClick={() => this.changeQuant(1)}>
           <i className="fa fa-plus fa-lg" aria-hidden="true" />
         </button>
       </div>

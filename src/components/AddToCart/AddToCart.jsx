@@ -1,13 +1,15 @@
 import React from 'react';
 
-const updateCrtQuant = (idWanted) => {
+const updateCrtQuant = (idWanted, quantity) => {
+  console.log(quantity);
   const itemsOnCrlId = JSON.parse(localStorage.crlId);
   const itemsOnCrlQuant = JSON.parse(localStorage.crlQuant);
   const indexChange = itemsOnCrlId.indexOf(idWanted);
+  if(!quantity) quantity = 1;
   if (itemsOnCrlQuant[indexChange]) {
     itemsOnCrlQuant[indexChange] += 1;
   } else {
-    itemsOnCrlQuant[indexChange] = 1;
+    itemsOnCrlQuant[indexChange] = quantity;
   }
   localStorage.crlQuant = JSON.stringify(itemsOnCrlQuant);
 };
@@ -30,7 +32,7 @@ const checkEquals = (item2Put, itensSaved) => {
   return respOfCall;
 };
 
-const initStorage = (itemParam) => {
+const initStorage = (itemParam, quantity) => {
   localStorage.itemsOnCart = JSON.stringify([]);
   // crlId === Controlador do Id;
   localStorage.crlId = JSON.stringify([]);
@@ -38,30 +40,30 @@ const initStorage = (itemParam) => {
 
   // crlQuant === Controlador da quantidade dos produtos;
   localStorage.crlQuant = JSON.stringify([]);
-  updateCrtQuant(Object.values(itemParam)[0]);
+  updateCrtQuant(Object.values(itemParam)[0], quantity);
 };
 
-const auxAddToCart = (itemParam, itemsOnCart, updateItemsOnCart) => {
+const auxAddToCart = (itemParam, itemsOnCart, updateItemsOnCart, quantity) => {
   if (checkEquals(itemParam, itemsOnCart)) {
     updateItemsOnCart.pop();
   } else {
     updateCrtId(Object.values(itemParam)[0]);
   }
-  updateCrtQuant(Object.values(itemParam)[0]);
+  updateCrtQuant(Object.values(itemParam)[0], quantity);
   return updateItemsOnCart;
 };
 
 const AddToCart = (props) => {
-  const { item, dataTestid } = props;
+  const { item, dataTestid, quantity } = props;
 
   const addToCart = (itemParam) => {
     if (!localStorage.itemsOnCart) {
-      initStorage(itemParam);
+      initStorage(itemParam, quantity);
     }
     const itemsOnCart = JSON.parse(localStorage.itemsOnCart);
     let updateItemsOnCart = [...itemsOnCart, itemParam];
     if (itemsOnCart.length !== 0) {
-      updateItemsOnCart = auxAddToCart(itemParam, itemsOnCart, updateItemsOnCart);
+      updateItemsOnCart = auxAddToCart(itemParam, itemsOnCart, updateItemsOnCart, quantity);
     }
     localStorage.itemsOnCart = JSON.stringify(updateItemsOnCart);
   };
