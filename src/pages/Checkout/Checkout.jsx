@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import BackLink from '../../components/BackLink';
-import Form from './formsBuy';
-import CodBarras from './codBarras';
-import Cartao from './payCartao';
+import Form from '../../components/Forms/formsBuy';
+import CodBarras from '../../components/Forms/codBarras';
+import Cartao from '../../components/Forms/payCartao';
 
 import './InfoBuy.css';
 
