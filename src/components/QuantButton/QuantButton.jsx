@@ -5,13 +5,13 @@ const backIndex = (id) => {
   if (!localStorage.crlId) localStorage.crlId = JSON.stringify([]);
   const ids = JSON.parse(localStorage.crlId);
   return ids.indexOf(id);
-}
+};
 
 const changeStorage = (index, newNum) => {
   const itens = JSON.parse(localStorage.crlQuant);
   itens[index] = newNum;
   localStorage.crlQuant = JSON.stringify(itens);
-}
+};
 
 export default class QuantButton extends Component {
   constructor(props) {

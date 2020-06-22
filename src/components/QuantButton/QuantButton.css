@@ -8,7 +8,7 @@ button {
 }
 
 .number {
-	border: solid 1px black;
+  border: solid 1px black;
   border-radius: 15%;
   margin: 3% 7%;
   min-width: 7%;

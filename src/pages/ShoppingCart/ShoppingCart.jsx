@@ -10,7 +10,7 @@ const pickQuantify = (index) => {
   if (!localStorage.crlQuant) localStorage.crlQuant = JSON.stringify([]);
   const quant = JSON.parse(localStorage.crlQuant);
   return quant[index];
-}
+};
 
 class ShoppingCart extends React.Component {
   constructor(props) {
