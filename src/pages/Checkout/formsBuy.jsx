@@ -9,27 +9,12 @@ export default class formsBuy extends Component {
         <div className="infoBuy-container">
           <h3>Informações do Comprador</h3>
           <form className="infoBuy-form">
-            <input
-              type="text"
-              name="nome"
-              data-testid="checkout-fullname"
-              placeholder="Nome Completo"
-            />
-            <input type="text" name="cpf" data-testid="checkout-cpf" placeholder="CPF" />
-            <input type="text" name="meil" data-testid="checkout-email" placeholder="Email" />
-            <input
-              type="text"
-              name="telefone"
-              data-testid="checkout-phone"
-              placeholder="Telefone"
-            />
-            <input type="text" name="cep" data-testid="checkout-cep" placeholder="CEP" />
-            <input
-              type="text"
-              name="endereco"
-              data-testid="checkout-address"
-              placeholder="Endereço"
-            />
+            <input type="text" data-testid="checkout-fullname" placeholder="Nome Completo" />
+            <input type="text" data-testid="checkout-cpf" placeholder="CPF" />
+            <input type="text" data-testid="checkout-email" placeholder="Email" />
+            <input type="text" data-testid="checkout-phone" placeholder="Telefone" />
+            <input type="text" data-testid="checkout-cep" placeholder="CEP" />
+            <input type="text" data-testid="checkout-address" placeholder="Endereço" />
             <input type="text" name="complemento" placeholder="Complemento" />
             <input type="text" name="numero" placeholder="Numero" />
             <input type="text" name="cidade" placeholder="Cidade" />
