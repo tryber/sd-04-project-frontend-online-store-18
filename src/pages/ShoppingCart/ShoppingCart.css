@@ -30,6 +30,11 @@
   flex-direction: row;
 }
 
+.item-quantity {
+  display: flex;
+  flex-direction: row;
+}
+
 .item-title {
   margin: 0 3%;
 }

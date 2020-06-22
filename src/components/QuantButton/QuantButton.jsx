@@ -33,13 +33,14 @@ export default class QuantButton extends Component {
   }
 
   render() {
+    const { dataTestIncrease, dataTestDecreate } = this.props;
     return (
       <div className="buttons-container">
-        <button data-testing="product-decreate-quantity" onClick={() => this.changeQuant(-1)}>
+        <button data-testid={dataTestDecreate} onClick={() => this.changeQuant(-1)}>
           <i className="fa fa-minus fa-lg" aria-hidden="true" />
         </button>
         <div className="number">{this.state.num}</div>
-        <button data-testing="product-increase-quantity" onClick={() => this.changeQuant(1)}>
+        <button data-testid={dataTestIncrease} onClick={() => this.changeQuant(1)}>
           <i className="fa fa-plus fa-lg" aria-hidden="true" />
         </button>
       </div>

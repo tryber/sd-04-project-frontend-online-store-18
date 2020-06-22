@@ -1,5 +1,6 @@
 // Absolute imports
 import React from 'react';
+import { Link } from 'react-router-dom';
 // Relative imports
 import BackLink from '../../components/BackLink';
 import QuantButton from '../../components/QuantButton/QuantButton';
@@ -44,15 +45,29 @@ class ShoppingCart extends React.Component {
       items.map((item, index) => (
         <div key={`${item.id}`} className="itens-container">
           <img src={item.thumbnail} alt="item" />
-          <span data-testid="shopping-cart-product-name" className="item-title">
+          <div data-testid="shopping-cart-product-name" className="item-title">
             {item.title}
-          </span>
+          </div>
           <div data-testid="shopping-cart-product-quantity" className="item-quantity">
-            <QuantButton itemId={item.id} numInitial={pickQuantify(index)} />
+            <QuantButton
+              dataTestIncrease="product-increase-quantity"
+              dataTestDecreate="product-decrease-quantity"
+              itemId={item.id}
+              numInitial={pickQuantify(index)}
+            />
           </div>
         </div>
       ))
     );
+  }
+
+  finalPrice() {
+    let price = 0;
+
+    this.state.items.map((item, index) => {
+      price += item.price * pickQuantify(index);
+    });
+    return price;
   }
 
   render() {
@@ -66,6 +81,13 @@ class ShoppingCart extends React.Component {
             <p>Carrinho de Compras</p>
           </div>
           {this.renderItems()}
+          <div>
+            <h4 />
+            Valor Total da Compra: R$ {this.finalPrice()}
+          </div>
+          <Link to="/checkout">
+            <span data-testid="checkout-products">Finalizar Compra</span>
+          </Link>
         </div>
       </div>
     );
