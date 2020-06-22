@@ -1,15 +1,16 @@
 import React from 'react';
 
 const realyChange = (itemsOnCrlQuant, indexChange, plusQuant, quantity) => {
-  if (itemsOnCrlQuant[indexChange] && !plusQuant) {
-    itemsOnCrlQuant[indexChange] += 1;
-  } else if (itemsOnCrlQuant[indexChange] && plusQuant) {
-    itemsOnCrlQuant[indexChange] += quantity;
+  let atualItens = itemsOnCrlQuant;
+  if (atualItens[indexChange] && !plusQuant) {
+    atualItens[indexChange] += 1;
+  } else if (atualItens[indexChange] && plusQuant) {
+    atualItens[indexChange] += quantity;
   } else {
-    itemsOnCrlQuant[indexChange] = quantity;
+    atualItens[indexChange] = quantity;
   }
-  return itemsOnCrlQuant;
-}
+  return atualItens;
+};
 
 const updateCrtQuant = (idWanted, quantity, plusQuant) => {
   console.log(quantity);

@@ -39,6 +39,17 @@ class ProductDetail extends React.Component {
     );
   }
 
+  putAddCart(item) {
+    return (
+      <AddToCart
+        dataTestid="product-detail-add-to-cart"
+        item={item}
+        quantity={this.state.quantity}
+        plusQuant={true}
+      />
+    )
+  }
+
   render() {
     const { location } = this.props;
     const { item } = location;
@@ -61,12 +72,7 @@ class ProductDetail extends React.Component {
             </div>
           </div>
           {this.renderQuantButtons()}
-          <AddToCart
-            dataTestid="product-detail-add-to-cart"
-            item={item}
-            quantity={this.state.quantity}
-            plusQuant={true}
-          />
+          {this.putAddCart(item)}
         </div>
         <div className="product-detail-container">
           <Rating />
