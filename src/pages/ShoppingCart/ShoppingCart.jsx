@@ -29,13 +29,23 @@ class ShoppingCart extends React.Component {
 
   componentDidMount() {
     this.updateState();
-    this.finalPrice();
+  }
+
+  initiPrice(items) {
+    let pc = 0;
+    
+    items.forEach((item, index) => {
+      pc += item.price * pickQuantify(index);
+      pc = parseFloat(pc.toPrecision(8));
+    });
+    this.setState({ price: pc });
   }
 
   updateState() {
     if (!localStorage.itemsOnCart) localStorage.itemsOnCart = JSON.stringify([]);
     const items = JSON.parse(localStorage.itemsOnCart);
     // console.log(items);
+    this.initiPrice(items);
     this.setState({ items });
   }
 
@@ -47,7 +57,6 @@ class ShoppingCart extends React.Component {
       pc = parseFloat(pc.toPrecision(8));
     });
     this.setState({ price: pc });
-    //return this.state.price;
   }
 
   renderItems() {
