@@ -84,7 +84,8 @@ class ShoppingCart extends React.Component {
           {this.renderItems()}
           <div>
             <p />
-            Valor Total da Compra: R$ {this.finalPrice()}
+            Valor Total da Compra: R$
+            {this.finalPrice()}
           </div>
           <Link to="/checkout">
             <span data-testid="checkout-products">Finalizar Compra</span>
