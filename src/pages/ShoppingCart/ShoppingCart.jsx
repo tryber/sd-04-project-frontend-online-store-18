@@ -13,35 +13,51 @@ const pickQuantify = (index) => {
   return quant[index];
 };
 
+const doPrice = (array) => {
+  let price = 0;
+  array.forEach((item, index) => {
+    price += item.price * pickQuantify(index);
+    price = parseFloat(price.toPrecision(8));
+  });
+  return price;
+};
+
 class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { items: [] };
+    this.state = {
+      items: [],
+      price: 0,
+    };
 
     this.updateState = this.updateState.bind(this);
     this.renderItems = this.renderItems.bind(this);
+    this.finalPrice = this.finalPrice.bind(this);
   }
 
   componentDidMount() {
     this.updateState();
   }
 
+  initiPrice(items) {
+    let pc = 0;
+    pc = doPrice(items);
+    this.setState({ price: pc });
+  }
+
   updateState() {
     if (!localStorage.itemsOnCart) localStorage.itemsOnCart = JSON.stringify([]);
     const items = JSON.parse(localStorage.itemsOnCart);
     // console.log(items);
+    this.initiPrice(items);
     this.setState({ items });
   }
 
   finalPrice() {
-    let price = 0;
-
-    this.state.items.map((item, index) => {
-      price += item.price * pickQuantify(index);
-      return price;
-    });
-    return price;
+    let pc = 0;
+    pc = doPrice(this.state.items);
+    this.setState({ price: pc });
   }
 
   renderItems() {
@@ -64,6 +80,7 @@ class ShoppingCart extends React.Component {
               dataTestDecreate="product-decrease-quantity"
               itemId={item.id}
               numInitial={pickQuantify(index)}
+              callPrice={() => this.finalPrice()}
             />
           </div>
         </div>
@@ -84,8 +101,7 @@ class ShoppingCart extends React.Component {
           {this.renderItems()}
           <div>
             <p />
-            Valor Total da Compra: R$
-            {this.finalPrice()}
+            Valor Total da Compra: R$ {this.state.price}
           </div>
           <Link to="/checkout">
             <span data-testid="checkout-products">Finalizar Compra</span>
