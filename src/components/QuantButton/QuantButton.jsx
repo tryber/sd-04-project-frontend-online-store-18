@@ -33,8 +33,8 @@ export default class QuantButton extends Component {
     }
   }
 
-  onClick(callPrice) {
-    this.changeQuant(1)
+  onClick(callPrice, operacao) {
+    this.changeQuant(operacao)
     callPrice();
   }
 
@@ -42,11 +42,11 @@ export default class QuantButton extends Component {
     const { dataTestIncrease, dataTestDecreate, callPrice } = this.props;
     return (
       <div className="buttons-container">
-        <button data-testid={dataTestDecreate} onClick={() => this.changeQuant(-1)}>
+        <button data-testid={dataTestDecreate} onClick={() => this.onClick(callPrice, -1)}>
           <i className="fa fa-minus fa-lg" aria-hidden="true" />
         </button>
         <div className="number">{this.state.num}</div>
-        <button data-testid={dataTestIncrease} onClick={() => this.onClick(callPrice)}>
+        <button data-testid={dataTestIncrease} onClick={() => this.onClick(callPrice, 1)}>
           <i className="fa fa-plus fa-lg" aria-hidden="true" />
         </button>
       </div>

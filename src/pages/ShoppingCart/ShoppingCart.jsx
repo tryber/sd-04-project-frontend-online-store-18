@@ -24,10 +24,12 @@ class ShoppingCart extends React.Component {
 
     this.updateState = this.updateState.bind(this);
     this.renderItems = this.renderItems.bind(this);
+    this.finalPrice = this.finalPrice.bind(this);
   }
 
   componentDidMount() {
     this.updateState();
+    this.finalPrice();
   }
 
   updateState() {
@@ -42,6 +44,7 @@ class ShoppingCart extends React.Component {
 
     this.state.items.forEach((item, index) => {
       pc += item.price * pickQuantify(index);
+      pc = parseFloat(pc.toPrecision(8));
     });
     this.setState({ price: pc });
     //return this.state.price;
