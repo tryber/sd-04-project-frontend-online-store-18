@@ -17,7 +17,10 @@ class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { items: [] };
+    this.state = { 
+      items: [],
+      price: 0,
+     };
 
     this.updateState = this.updateState.bind(this);
     this.renderItems = this.renderItems.bind(this);
@@ -35,13 +38,13 @@ class ShoppingCart extends React.Component {
   }
 
   finalPrice() {
-    let price = 0;
+    let pc = 0;
 
-    this.state.items.map((item, index) => {
-      price += item.price * pickQuantify(index);
-      return price;
+    this.state.items.forEach((item, index) => {
+      pc += item.price * pickQuantify(index);
     });
-    return price;
+    this.setState({ price: pc });
+    //return this.state.price;
   }
 
   renderItems() {
@@ -64,6 +67,7 @@ class ShoppingCart extends React.Component {
               dataTestDecreate="product-decrease-quantity"
               itemId={item.id}
               numInitial={pickQuantify(index)}
+              callPrice={() => this.finalPrice()}
             />
           </div>
         </div>
@@ -84,7 +88,7 @@ class ShoppingCart extends React.Component {
           {this.renderItems()}
           <div>
             <p />
-            Valor Total da Compra: R$ {this.finalPrice()}
+            Valor Total da Compra: R$ {this.state.price}
           </div>
           <Link to="/checkout">
             <span data-testid="checkout-products">Finalizar Compra</span>

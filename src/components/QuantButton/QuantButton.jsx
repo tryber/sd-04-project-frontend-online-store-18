@@ -10,6 +10,7 @@ const backIndex = (id) => {
 const changeStorage = (index, newNum) => {
   const itens = JSON.parse(localStorage.crlQuant);
   itens[index] = newNum;
+  //callPrice;
   localStorage.crlQuant = JSON.stringify(itens);
 };
 
@@ -32,15 +33,20 @@ export default class QuantButton extends Component {
     }
   }
 
+  onClick(callPrice) {
+    this.changeQuant(1)
+    callPrice();
+  }
+
   render() {
-    const { dataTestIncrease, dataTestDecreate } = this.props;
+    const { dataTestIncrease, dataTestDecreate, callPrice } = this.props;
     return (
       <div className="buttons-container">
         <button data-testid={dataTestDecreate} onClick={() => this.changeQuant(-1)}>
           <i className="fa fa-minus fa-lg" aria-hidden="true" />
         </button>
         <div className="number">{this.state.num}</div>
-        <button data-testid={dataTestIncrease} onClick={() => this.changeQuant(1)}>
+        <button data-testid={dataTestIncrease} onClick={() => this.onClick(callPrice)}>
           <i className="fa fa-plus fa-lg" aria-hidden="true" />
         </button>
       </div>
