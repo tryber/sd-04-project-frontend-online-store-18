@@ -1,0 +1,32 @@
+.infoBuy-container {
+  align-items: baseline;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  height: 170px;
+  margin: 20px;
+  width: 1200px;
+}
+
+.infoBuy-form {
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+}
+
+.infoBuy-form input {
+  border: 1px solid black;
+  height: 20px;
+  margin: 2px;
+  margin-left: 10px;
+  padding: 5px;
+  width: 250px;
+}
+
+.infoBuy-form select {
+  border: 1px solid black;
+  height: 31px;
+  margin: 3px;
+  margin-left: 10px;
+  width: 150px;
+}
