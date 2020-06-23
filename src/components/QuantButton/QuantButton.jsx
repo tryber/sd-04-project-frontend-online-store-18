@@ -10,7 +10,6 @@ const backIndex = (id) => {
 const changeStorage = (index, newNum) => {
   const itens = JSON.parse(localStorage.crlQuant);
   itens[index] = newNum;
-  //callPrice;
   localStorage.crlQuant = JSON.stringify(itens);
 };
 
@@ -22,6 +21,11 @@ export default class QuantButton extends Component {
     this.changeQuant = this.changeQuant.bind(this);
   }
 
+  onClick(callPrice, operacao) {
+    this.changeQuant(operacao);
+    callPrice();
+  }
+
   changeQuant(operacao) {
     let atualNum = this.state.num;
     const { itemId } = this.props;
@@ -31,11 +35,6 @@ export default class QuantButton extends Component {
       const index = backIndex(itemId);
       changeStorage(index, atualNum);
     }
-  }
-
-  onClick(callPrice, operacao) {
-    this.changeQuant(operacao)
-    callPrice();
   }
 
   render() {

@@ -13,14 +13,23 @@ const pickQuantify = (index) => {
   return quant[index];
 };
 
+const doPrice = (array) => {
+  let price = 0;
+  array.forEach((item, index) => {
+    price += item.price * pickQuantify(index);
+    price = parseFloat(price.toPrecision(8));
+  });
+  return price;
+};
+
 class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       items: [],
       price: 0,
-     };
+    };
 
     this.updateState = this.updateState.bind(this);
     this.renderItems = this.renderItems.bind(this);
@@ -33,11 +42,7 @@ class ShoppingCart extends React.Component {
 
   initiPrice(items) {
     let pc = 0;
-    
-    items.forEach((item, index) => {
-      pc += item.price * pickQuantify(index);
-      pc = parseFloat(pc.toPrecision(8));
-    });
+    pc = doPrice (items);
     this.setState({ price: pc });
   }
 
@@ -51,11 +56,7 @@ class ShoppingCart extends React.Component {
 
   finalPrice() {
     let pc = 0;
-
-    this.state.items.forEach((item, index) => {
-      pc += item.price * pickQuantify(index);
-      pc = parseFloat(pc.toPrecision(8));
-    });
+    pc = doPrice (this.state.items);
     this.setState({ price: pc });
   }
 
