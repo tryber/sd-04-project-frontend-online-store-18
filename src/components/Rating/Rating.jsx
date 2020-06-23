@@ -24,7 +24,13 @@ class Rating extends React.Component {
     return (
       <div className="rating-container">
         <input type="email" name="email" placeholder="Email" onChange={this.updateState} />
-        <ReactStars count={5} onChange={this.handleRating} value={rating} size={24} color="#ffd700" />
+        <ReactStars
+          count={5}
+          onChange={this.handleRating}
+          value={rating}
+          size={24}
+          color="#ffd700"
+        />
         <textarea
           data-testid="product-detail-evaluation"
           name="message"
