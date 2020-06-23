@@ -42,7 +42,7 @@ class ShoppingCart extends React.Component {
 
   initiPrice(items) {
     let pc = 0;
-    pc = doPrice (items);
+    pc = doPrice(items);
     this.setState({ price: pc });
   }
 
@@ -56,7 +56,7 @@ class ShoppingCart extends React.Component {
 
   finalPrice() {
     let pc = 0;
-    pc = doPrice (this.state.items);
+    pc = doPrice(this.state.items);
     this.setState({ price: pc });
   }
 
